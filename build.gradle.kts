@@ -16,14 +16,3 @@ buildscript {
         classpath("com.github.dcendents:android-maven-gradle-plugin:2.0")
     }
 }
-
-/***
-allprojects {
-    repositories {
-        google()
-        mavenCentral()
-        maven {
-            url = uri("https://www.jitpack.io" )
-        }
-    }
-}*/

@@ -15,12 +15,6 @@ dependencyResolutionManagement {
         }
     }
 }
-/**buildscript {
-    dependencies {
-        classpath("com.android.tools.build:gradle:4.2.2")
-        classpath("com.github.dcendents:android-maven-gradle-plugin:2.0")
-    }
-}*/
 
 rootProject.name = "T-System"
 include(":app")

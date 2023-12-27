@@ -1,10 +1,10 @@
 plugins {
-    id("com.android.library")
-    id("maven-publish")
-    ///id ("com.github.dcendents.android-maven")
+    id ("com.android.library")
+    `maven-publish`
+    signing
 }
 
-group = "com.github.jitpack"
+group = "com.example"
 version = "1.0"
 
 android {
@@ -52,4 +52,26 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+}
+
+
+
+/**
+java {
+    withJavadocJar()
+    withSourcesJar()
+}*/
+
+afterEvaluate {
+    publishing {
+        publications {
+            create<MavenPublication>("maven") {
+                groupId = "org.gradle.sample"
+                artifactId = "library"
+                version = "1.1"
+
+                ////--from(components["java"])
+            }
+        }
+    }
 }
