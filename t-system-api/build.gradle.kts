@@ -3,6 +3,9 @@ plugins {
     id("maven-publish")
 }
 
+group = "com.github.jitpack"
+version = "1.0"
+
 android {
     namespace = "api.ttt.system"
     compileSdk = 33
@@ -26,6 +29,18 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    publishing {
+        singleVariant("release") {
+            withSourcesJar()
+            withJavadocJar()
+        }
+
+        singleVariant("debug") {
+            withSourcesJar()
+            withJavadocJar()
+        }
     }
 }
 
