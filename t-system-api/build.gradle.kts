@@ -1,11 +1,26 @@
 plugins {
-    id ("com.android.library")
-    `maven-publish`
-    signing
+    /**id("com.android.library")
+    ///---id("kotlin-android")
+    ///+id("org.jetbrains.dokka") version "1.6.21"
+    ///+id("jacoco")
+    id("maven-publish")
+    // To generate signature and checksum files for each artifact
+    id("signing")
+    // To print beautiful logs on the console while running tests with Gradle
+    // Doesn't work for Android instrumented tests
+    id("com.adarshr.test-logger") version "3.0.0*/
+
+    id("com.android.library")
+    ///-id("kotlin-android")
+    ///-id("kotlin-android-extensions")
+    id("maven-publish")
 }
 
-group = "com.example"
-version = "1.0"
+
+group = "ir.mahozad.android"
+version = "0.7.0"
+val githubProjectName = "T-System"
+
 
 android {
     namespace = "api.ttt.system"
@@ -52,26 +67,4 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
-}
-
-
-
-/**
-java {
-    withJavadocJar()
-    withSourcesJar()
-}*/
-
-afterEvaluate {
-    publishing {
-        publications {
-            create<MavenPublication>("maven") {
-                groupId = "org.gradle.sample"
-                artifactId = "library"
-                version = "1.1"
-
-                ////--from(components["java"])
-            }
-        }
-    }
 }
