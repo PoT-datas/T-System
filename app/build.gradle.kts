@@ -40,5 +40,4 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
     implementation(project(mapOf("path" to ":t-system-api")))
-    ///-implementation("api.ttt.android:t-system-api:1.0.0-T")
 }

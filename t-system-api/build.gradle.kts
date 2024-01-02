@@ -1,40 +1,6 @@
 plugins {
-    /**id("com.android.library")
-    ///---id("kotlin-android")
-    ///+id("org.jetbrains.dokka") version "1.6.21"
-    ///+id("jacoco")
-    id("maven-publish")
-    // To generate signature and checksum files for each artifact
-    id("signing")
-    // To print beautiful logs on the console while running tests with Gradle
-    // Doesn't work for Android instrumented tests
-    id("com.adarshr.test-logger") version "3.0.0*/
-
     id("com.android.library")
     id("maven-publish")
-}
-
-
-group = "api.ttt.android"
-version = "1.0.0-T"
-val githubProjectName = "T-System"
-
-
-publishing {
-    publications {
-        /**create<MavenPublication>("mavenJava") {
-            from(components["java"])
-        }*/
-        create<MavenPublication>("ReleaseAar") {
-            groupId = "api.ttt.android"
-            artifactId = "t-system-api"
-            version = "1.0.0-T"
-            afterEvaluate { artifact(tasks.getByName("bundleReleaseAar")) }
-        }
-    }
-    repositories {
-        mavenLocal()
-    }
 }
 
 
@@ -83,4 +49,71 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+}
+
+
+
+group = "com.ttt.api"
+version = "1.0.0-T"
+val githubProjectName = "T-System"
+
+
+publishing {
+    publications {
+        create<MavenPublication>("ReleaseAar") {
+            groupId = "com.ttt.api"
+            artifactId = "T-System"
+            version = "1.0.0-T"
+
+            pom {
+                url.set("https://github.com/PoT-datas/$githubProjectName")
+                name.set(githubProjectName)
+                description.set(
+                    """
+                        A library for terminal system control
+                        Visit the project on GitHub to learn more.
+                        """.trimIndent()
+                )
+                inceptionYear.set("2023")
+                licenses {
+                    license {
+                        name.set("Apache-2.0 License")
+                        url.set("http://www.apache.org/licenses/LICENSE-2.0.txt")
+                    }
+                }
+                developers {
+                    developer {
+                        id.set("ttt")
+                        name.set("Olivier Tambo")
+                        url.set("https://ttt.com/")
+                        email.set("olivierdhon@gmail.com")
+                        roles.set(listOf("Lead Developer"))
+                        timezone.set("GMT+2:00")
+                    }
+                }
+                contributors {
+                    // contributor {}
+                }
+                scm {
+                    tag.set("HEAD")
+                    url.set("https://github.com/PoT-datas/$githubProjectName")
+                    connection.set("scm:git:github.com/PoT-datas$githubProjectName.git")
+                    developerConnection.set("scm:git:ssh://github.com/PoT-datas/$githubProjectName.git")
+                }
+                issueManagement {
+                    system.set("GitHub")
+                    url.set("https://github.com/PoT-datas/$githubProjectName/issues")
+                }
+                ciManagement {
+                    system.set("GitHub Actions")
+                    url.set("https://github.com/PoT-datas/$githubProjectName/actions")
+                }
+            }
+
+            afterEvaluate { artifact(tasks.getByName("bundleReleaseAar")) }
+        }
+    }
+    repositories {
+        mavenLocal()
+    }
 }
