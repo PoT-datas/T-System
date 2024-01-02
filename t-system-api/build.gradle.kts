@@ -11,15 +11,31 @@ plugins {
     id("com.adarshr.test-logger") version "3.0.0*/
 
     id("com.android.library")
-    ///-id("kotlin-android")
-    ///-id("kotlin-android-extensions")
     id("maven-publish")
 }
 
 
-group = "ir.mahozad.android"
-version = "0.7.0"
+group = "api.ttt.android"
+version = "1.0.0-T"
 val githubProjectName = "T-System"
+
+
+publishing {
+    publications {
+        /**create<MavenPublication>("mavenJava") {
+            from(components["java"])
+        }*/
+        create<MavenPublication>("ReleaseAar") {
+            groupId = "api.ttt.android"
+            artifactId = "t-system-api"
+            version = "1.0.0-T"
+            afterEvaluate { artifact(tasks.getByName("bundleReleaseAar")) }
+        }
+    }
+    repositories {
+        mavenLocal()
+    }
+}
 
 
 android {
